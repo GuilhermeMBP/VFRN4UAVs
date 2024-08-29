@@ -58,6 +58,7 @@ def plot_data(all_x_values, all_y_values, parsed_data):
             plt.scatter(x1, x2, color=point_colors[k])
             if k == 'safe':
                 # Draw a circle with the perturbation radius
+                #TODO for now, the radius is fixed to 0.01, it can be parsed from the vnnlib directory name
                 circle = plt.Circle((x1, x2), 0.01, color='blue', fill = True, alpha=0.2)
                 plt.gca().add_artist(circle)
 
