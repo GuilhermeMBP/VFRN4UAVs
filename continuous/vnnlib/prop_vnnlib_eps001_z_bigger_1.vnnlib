@@ -1,0 +1,49 @@
+;; --- INPUT VARIABLES ---
+(declare-const X_0 Real)
+(declare-const X_1 Real)
+(declare-const X_2 Real)
+(declare-const X_3 Real)
+(declare-const X_4 Real)
+(declare-const X_5 Real)
+(declare-const X_6 Real)
+(declare-const X_7 Real)
+(declare-const X_8 Real)
+(declare-const X_9 Real)
+(declare-const X_10 Real)
+(declare-const X_11 Real)
+
+;; --- OUTPUT VARIABLES ---
+(declare-const Y_0 Real)
+
+;; --- INPUT CONSTRAINTS ---
+(assert (>= X_0 0))      ;; X
+(assert (<= X_0 1))       
+(assert (>= X_1 0))      ;; Y
+(assert (<= X_1 1))       
+(assert (>= X_2 1.5))        ;; Z
+(assert (<= X_2 2))        
+(assert (>= X_3 -0.1))     ;; Roll
+(assert (<= X_3 0.1))     
+(assert (>= X_4 -0.1))      ;; Pitch
+(assert (<= X_4 0.1))
+(assert (>= X_5 -0.1))      ;; Yaw
+(assert (<= X_5 0.1))
+(assert (>= X_6 0.1))      ;; Vx
+(assert (<= X_6 0.3))
+(assert (>= X_7 0.1))      ;; Vy
+(assert (<= X_7 0.3))
+(assert (>= X_8 0.1))     ;; Vz
+(assert (<= X_8 0.3))
+(assert (>= X_9 -0.1))     ;; Wx
+(assert (<= X_9 0.1))
+(assert (>= X_10 -0.1))    ;; Wy
+(assert (<= X_10 -0.1))
+(assert (>= X_11 -0.1))     ;; Wz
+(assert (<= X_11 0.1))
+
+;; --- OUTPUT CONSTRAINTS ---
+(assert 
+    (or 
+        (and (>= Y_0 0)) ;; Não existe combinação 
+    )                    ;; de valores que dê Y_0 > 0
+)

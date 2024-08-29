@@ -1,0 +1,19 @@
+# Example of verifying an pth model with VNNLIB general specifications
+general:
+  enable_incomplete_verification: false
+  loss_reduction_func: max
+  save_adv_example: True
+model:
+  name: pposb3_3_256
+  path: /app/drone_hovering_3_256_relu.pth
+  input_shape: [-1, 12]
+specification:
+  # VNNLIB file specification.
+  vnnlib_path: /app/prop_vnnlib_eps01_always_stable.vnnlib
+solver:
+  batch_size: 1028  # Number of subdomains to compute in parallel in bound solver. Decrease if you run out of memory.
+bab:
+  timeout: 340 
+attack:
+  pgd_order: before
+  cex_path: /adv_always_stable.txt

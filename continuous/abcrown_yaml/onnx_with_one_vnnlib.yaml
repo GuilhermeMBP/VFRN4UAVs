@@ -1,0 +1,17 @@
+# Example of verifying an ONNX model with VNNLIB general specifications
+general:
+  enable_incomplete_verification: False
+  loss_reduction_func: max
+model:
+  onnx_path: /app/drone_hovering_sac_RELU_last_tanH.onnx
+  input_shape: [-1, 12]
+specification:
+  # VNNLIB file specification.
+  vnnlib_path: /app/prop_vnnlib_eps01_z_bigger_1.vnnlib
+solver:
+  batch_size: 100  # Number of subdomains to compute in parallel in bound solver. Decrease if you run out of memory.
+bab:
+  branching:
+    method: random
+attack:
+  pgd_order: skip

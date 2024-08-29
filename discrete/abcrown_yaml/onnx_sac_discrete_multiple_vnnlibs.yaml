@@ -1,0 +1,18 @@
+# Example of verifying an pth model with VNNLIB general specifications
+general:
+  enable_incomplete_verification: false
+  loss_reduction_func: max
+  save_adv_example: True
+  save_output: True
+  root_path: /app/discrete/vnnlibs_0.01_quadrants
+  csv_name: vnnlib_files.csv
+model:
+  onnx_path: /app/discrete/sac_kin_discrete2d_complex_wo_tanh_436reward.onnx
+  input_shape: [ -1, 12 ]
+solver:
+  batch_size: 1028  # Number of subdomains to compute in parallel in bound solver. Decrease if you run out of memory.
+bab:
+  timeout: 50
+attack:
+  pgd_order: before
+  cex_path: /app/discrete/vnnlibs_0.01_quadrants/cex_vnnlib_

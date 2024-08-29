@@ -1,0 +1,48 @@
+;; --- INPUT VARIABLES ---
+(declare-const X_0 Real)
+(declare-const X_1 Real)
+(declare-const X_2 Real)
+(declare-const X_3 Real)
+(declare-const X_4 Real)
+(declare-const X_5 Real)
+(declare-const X_6 Real)
+(declare-const X_7 Real)
+(declare-const X_8 Real)
+(declare-const X_9 Real)
+(declare-const X_10 Real)
+(declare-const X_11 Real)
+
+;; --- OUTPUT VARIABLES ---
+(declare-const Y_0 Real)
+
+;; --- INPUT CONSTRAINTS ---
+(assert (>= X_0 0.05))
+(assert (<= X_0 0.25))
+(assert (>= X_1 -0.27))
+(assert (<= X_1 -0.07))
+(assert (>= X_2 1))
+(assert (<= X_2 1))
+(assert (>= X_3 -0.21))
+(assert (<= X_3 -0.01))
+(assert (>= X_4 0.46))
+(assert (<= X_4 0.66))
+(assert (>= X_5 0.01))
+(assert (<= X_5 0.21))
+(assert (>= X_6 0.36))
+(assert (<= X_6 0.56))
+(assert (>= X_7 0.52))
+(assert (<= X_7 0.72))
+(assert (>= X_8 -0.80))
+(assert (<= X_8 -0.60))
+(assert (>= X_9 -0.94))
+(assert (<= X_9 -0.74))
+(assert (>= X_10 -0.04))
+(assert (<= X_10 0.16))
+(assert (>= X_11 0.69))
+(assert (<= X_11 0.89))
+
+;; --- OUTPUT CONSTRAINTS ---
+(assert (or
+	 (and (>= Y_0 0.01) 
+		  (<= Y_0 -0.01)) 
+))
