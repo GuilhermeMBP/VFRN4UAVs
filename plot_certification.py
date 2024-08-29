@@ -40,7 +40,7 @@ def parse_certified_file(file_path):
 
 
 # Function to plot the data
-def plot_data(all_x_values, all_y_values, parsed_data):
+def plot_data(all_x_values, all_y_values, parsed_data, include_unsafe):
     plt.figure(figsize=(8, 8))
 
     #Draw the target point
@@ -54,13 +54,19 @@ def plot_data(all_x_values, all_y_values, parsed_data):
     
     for k, v in parsed_data.items():
         for index in v:
-            x1, x2 = all_x_values[index], all_y_values[index]
-            plt.scatter(x1, x2, color=point_colors[k])
-            if k == 'safe':
+            if k != 'safe':
+                if include_unsafe:
+                    x1, x2 = all_x_values[index], all_y_values[index]
+                    plt.scatter(x1, x2, color=point_colors[k], s=1)
+            else:
+                x1, x2 = all_x_values[index], all_y_values[index]
+                plt.scatter(x1, x2, color=point_colors[k], s=1)
                 # Draw a circle with the perturbation radius
                 #TODO for now, the radius is fixed to 0.01, it can be parsed from the vnnlib directory name
                 circle = plt.Circle((x1, x2), 0.01, color='blue', fill = True, alpha=0.2)
                 plt.gca().add_artist(circle)
+                    
+                    
 
     plt.xlim(0, 2)
     plt.ylim(0, 2)
@@ -75,9 +81,11 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='draw counter-examples from a directory in a plot script')
     parser.add_argument('--file_path', required=True, type=str, help='file containing the certified results')
     parser.add_argument('--directory', required=True, type=str, help='directory containing the dataset (csv files)')
+    parser.add_argument('--include_unsafe', default=False, type=bool, help='boolean asking if the unsafe points should be included in the plot')
     args = parser.parse_args()
     file_path = args.file_path
     directory = args.directory
+    include_unsafe = args.include_unsafe
 
     all_x_values = []
     all_y_values = []
@@ -85,7 +93,7 @@ if __name__ == '__main__':
     parsed_data = parse_certified_file(file_path)
 
     # Iterate through the files in the directory
-    for filename in os.listdir(directory):
+    for filename in sorted(os.listdir(directory)):
         if filename.endswith(".csv"):
             filepath = os.path.join(directory, filename)
             with open(filepath, 'r') as file:
@@ -95,4 +103,4 @@ if __name__ == '__main__':
                 all_x_values.append(x_values)
                 all_y_values.append(y_values)
     
-    plot_data(all_x_values, all_y_values, parsed_data)
+    plot_data(all_x_values, all_y_values, parsed_data, include_unsafe)
