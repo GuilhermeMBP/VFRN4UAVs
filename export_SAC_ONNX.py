@@ -16,7 +16,7 @@ class OnnxableSB3SAC(th.nn.Module):
         return self.actor(observation)
 
 # Load the state dictionary
-model = SAC.load("/app/results/save-08.14.2024_06.39.34/best_model.zip", device="cuda")
+model = SAC.load("/app/VFRN4UAVs/discrete/models/save-440reward/best_model.zip", device="cuda")
 print(model.policy)
 onnx_sac = OnnxableSB3SAC(model.actor)
 observation_size = model.observation_space.shape
@@ -26,7 +26,7 @@ dummy_input = th.randn(1, *observation_size).to("cuda")
 th.onnx.export(
     onnx_sac,
     dummy_input,
-    "/app/sac_kin_discrete2d_complex_wo_tanh_436reward.onnx",
+    "/app/VFRN4UAVs/discrete/models/sac_kin_discrete2d_complex_wo_tanh_440reward.onnx",
     opset_version=17,
     input_names=["input"], 
 )
@@ -46,7 +46,7 @@ import onnx
 import onnxruntime as ort
 import numpy as np
 
-onnx_path = "/app/sac_kin_discrete2d_complex_wo_tanh_436reward.onnx"
+onnx_path = "/app/VFRN4UAVs/discrete/models/sac_kin_discrete2d_complex_wo_tanh_440reward.onnx"
 onnx_model = onnx.load(onnx_path)
 onnx.checker.check_model(onnx_model)
 
