@@ -1,0 +1,17 @@
+general:
+  enable_incomplete_verification: false
+  loss_reduction_func: max
+  save_adv_example: True
+  save_output: True
+  root_path: /app/VFRN4UAVs/discrete/datasets/dataset_31.08.2024/final/vnnlibs_0.01_too_tilted
+  csv_name: vnnlib_files.csv
+model:
+  onnx_path: /app/VFRN4UAVs/discrete/models/sac_kin_discrete2d_complex_wo_tanh_440reward.onnx
+  input_shape: [ -1, 12 ]
+solver:
+  batch_size: 1028  # Number of subdomains to compute in parallel in bound solver. Decrease if you run out of memory.
+bab:
+  timeout: 50
+attack:
+  pgd_order: before
+  cex_path: /app/VFRN4UAVs/discrete/datasets/dataset_31.08.2024/final/vnnlibs_0.01_too_tilted/cex_vnnlib_
