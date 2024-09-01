@@ -10,9 +10,9 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "python": "/opt/conda/envs/alpha-beta-crown/bin/python",
+            "python": "/opt/conda/envs/drones/bin/python",
             "justMyCode": false,
-            "args": "--file_path certified.txt"
+            "args": "--file_path /app/certified.txt --directory /app/VFRN4UAVs/discrete/datasets/dataset_31.08.2024/final --include_unsafe True"
         }
     ]
 }
