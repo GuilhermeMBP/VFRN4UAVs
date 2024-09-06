@@ -30,6 +30,10 @@ RUN /bin/bash -c "conda init"
 
 RUN /bin/bash -c "source ~/.bashrc && conda activate drones && pip3 install --upgrade pip && pip3 install -e ."
 
+RUN conda create -n pynever python=3.11
+
+RUN /bin/bash -c "source ~/.bashrc && conda activate drones && pip3 install pynever==0.1.1a4"
+
 RUN conda init bash
 
 CMD /bin/bash
